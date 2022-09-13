@@ -19,8 +19,7 @@ contract ERC20{
         _name="DREAM";
         _symbol="DRM";
         _decimal=18;
-        balances[msg.sender]=100 ether;
-        _totalSupply=100 ether;
+        _mint(msg.sender,100 ether);   
     }
     
 
@@ -107,6 +106,7 @@ contract ERC20{
     {
         require(msg.sender != address(0), "transfer from the zero address");
         require(_owner != address(0), "transfer from the zero address");
+        require(balances[_owner] >= _eth, "transfer from the balances notthing");
 
         balances[_owner]-=_eth;
         _totalSupply-=_eth;
